@@ -17,7 +17,7 @@ WORKDIR /app
 COPY . .
 COPY --from=frontend /app/public/build /app/public/build
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist > /tmp/composer-install.log 2>&1 || (tail -n 100 /tmp/composer-install.log && exit 1) \
     && chown -R www-data:www-data storage bootstrap/cache \
     && rm -f /etc/nginx/sites-enabled/default
 
