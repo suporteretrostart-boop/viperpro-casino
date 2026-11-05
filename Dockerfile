@@ -5,7 +5,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM php:8.3-fpm-bookworm
+FROM php:8.2-fpm-bookworm
 
 RUN apt-get update && apt-get install -y nginx git unzip libcurl4-openssl-dev libicu-dev libxml2-dev libzip-dev libpq-dev \
     && docker-php-ext-install -j$(nproc) bcmath curl intl opcache pcntl pdo_mysql pdo_pgsql simplexml zip \
