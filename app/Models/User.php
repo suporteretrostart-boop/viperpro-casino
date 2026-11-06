@@ -8,14 +8,12 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -115,14 +113,6 @@ class User extends Authenticatable implements FilamentUser, JWTSubject
     public function wallet(): HasOne
     {
         return $this->hasOne(Wallet::class)->where('active', 1);
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
     }
 
     /**
