@@ -3,6 +3,7 @@
 use App\Models\Game;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+Route::get('/up', fn () => response('OK', 200));
 
 /*
 |--------------------------------------------------------------------------
